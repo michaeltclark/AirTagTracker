@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 namespace AirTagTracker
 {
 
-    internal class FindMyCacheReader
+    internal class CacheReader
     {
         // public property of the type FindMyCache containing all of the read data
-        public FindMyCache Cache { get; private set; }
+        public Cache Cache { get; private set; }
 
         // constructor that loads the data file and does any required conversion so that the json can be read
-        public FindMyCacheReader(string cacheDir)
+        public CacheReader(string cacheDir)
         {
             // Supply the processed .data file
             ReadCache();
@@ -22,7 +22,7 @@ namespace AirTagTracker
         // method that reads the data
         private void ReadCache()
         {
-            Cache = new FindMyCache();
+            Cache = new Cache();
         }
     }
 }

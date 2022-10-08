@@ -12,11 +12,20 @@ namespace AirTagTracker
         /// <summary>
         /// Write the supplied FindMyCache to the database
         /// </summary>
-        public static void Write(FindMyCache cache)
+        public static void Write(Cache cache)
         {
-            using (var dbcx = new FindMyModel())
+            using (var context = new FindMyModel(new DbContextOptions<FindMyModel>()))
             {
+                var session = context.UploadSessions.Add(
+                    UploadSession.Create(
+                        cache.DateTimeDataAccessed,
+                        DateTime.Now,
+                        cache.DateTimeDataLastModified
+                        )
+                    );
 
+                // Foreach FindMyDevice in Cache, create a new data
+                context.AirTagDatas.Add(AirTagData.Create(session.Entity));
             }
         }
     }
