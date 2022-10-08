@@ -31,6 +31,11 @@ namespace AirTagTracker
       #endregion DbSets
 
       /// <summary>
+      /// Default connection string
+      /// </summary>
+      public static string ConnectionString { get; set; } = @"Server=tcp:granitetestingground.database.windows.net,1433;Initial Catalog=airtags;Persist Security Info=False;User ID=GraniteAdmin;Password=mBnx$Ddqc$yP9wR;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+
+      /// <summary>
       ///     <para>
       ///         Initializes a new instance of the <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> class using the specified options.
       ///         The <see cref="M:Microsoft.EntityFrameworkCore.DbContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)" /> method will still be called to allow further
@@ -43,12 +48,6 @@ namespace AirTagTracker
       }
 
       partial void CustomInit(DbContextOptionsBuilder optionsBuilder);
-
-      /// <inheritdoc />
-      protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-      {
-         CustomInit(optionsBuilder);
-      }
 
       partial void OnModelCreatingImpl(ModelBuilder modelBuilder);
       partial void OnModelCreatedImpl(ModelBuilder modelBuilder);

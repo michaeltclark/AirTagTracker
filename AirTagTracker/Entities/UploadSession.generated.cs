@@ -29,21 +29,13 @@ namespace AirTagTracker
       partial void Init();
 
       /// <summary>
-      /// Default constructor. Protected due to required properties, but present because EF needs it.
+      /// Default constructor
       /// </summary>
-      protected UploadSession()
+      public UploadSession()
       {
-         AirTagDatas = new System.Collections.Generic.HashSet<global::AirTagTracker.AirTagData>();
+         AirTagDatas = new System.Collections.Generic.List<global::AirTagTracker.AirTagData>();
 
          Init();
-      }
-
-      /// <summary>
-      /// Replaces default constructor, since it's protected. Caller assumes responsibility for setting all required values before saving.
-      /// </summary>
-      public static UploadSession CreateUploadSessionUnsafe()
-      {
-         return new UploadSession();
       }
 
       /// <summary>

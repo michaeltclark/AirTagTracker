@@ -12,7 +12,6 @@ namespace AirTagTracker
 {
     public class Cache
     {
-        // The JSON object of the cache & Important File Information
 
         /// <summary>
         /// Metadata from MacOS indicating the last modified DateTime of the file. 
@@ -24,17 +23,32 @@ namespace AirTagTracker
         /// </summary>
         public DateTime DateTimeDataAccessed { get; }
 
+        public Data[] Data { get; }
+
+
+        public Cache(string json)
+        {
+            DateTimeDataAccessed = DateTime.Now;
+
+            Data = JsonConvert.DeserializeObject<Data[]>(json);
+        }
+
+    }
+
+
+    public partial class Data
+    {
+        public static Data[] FromJson(string json) => JsonConvert.DeserializeObject<Data[]>(json);
+    }
+
+    public partial class Data
+    {
 
         [JsonProperty("name")]
         public string Name { get; set; }
 
         [JsonProperty("location")]
         public Location Location { get; set; }
-
-        public Cache()
-        {
-            DateTimeDataAccessed = DateTime.Now;
-        }
 
     }
 
