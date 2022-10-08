@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace AirTagTracker
 {
-    internal class FindMyCache
+    public class FindMyCache
     {
         // The JSON object of the cache & Important File Information
 
         public string DateTimeDataLastModified { get; set; }
 
-        public DateTime DateTimeAccessed { get; }
+        public DateTime DateTimeDataAccessed { get; }
 
         public FindMyCache()
         {
-            DateTimeAccessed = DateTime.Now;
+            DateTimeDataAccessed = DateTime.Now;
         }
     }
 }
