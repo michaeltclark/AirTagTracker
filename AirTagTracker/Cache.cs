@@ -26,9 +26,10 @@ namespace AirTagTracker
         public Data[] Data { get; }
 
 
-        public Cache(string json)
+        public Cache(string json, string filepath)
         {
             DateTimeDataAccessed = DateTime.Now;
+            DateTimeDataLastModified = File.GetLastWriteTime(filepath);
 
             Data = JsonConvert.DeserializeObject<Data[]>(json);
         }
