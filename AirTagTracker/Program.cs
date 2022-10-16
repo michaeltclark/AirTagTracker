@@ -5,10 +5,6 @@ Cache? _cache = null;
 List<Cache> _failedUploads = new List<Cache>();
 string filepath = @"C:\Users\clark\Downloads\Items.data";
 
-List<Cache> _failedUploads = new List<Cache>();
-
-string filepath = @"C:\Users\clark\Downloads\Items.data";
-
 /// Can I make this run on startup in MacOS?
 /// Open the Find My App (if Possible)
 // Log that Find My is open (if Possible) Something like system.threading.tasks or TaskManager
