@@ -25,7 +25,6 @@ namespace AirTagTracker
 
         public Data[] Data { get; }
 
-
         public Cache(string json, string filepath)
         {
             DateTimeDataAccessed = DateTime.Now;
@@ -35,7 +34,6 @@ namespace AirTagTracker
         }
 
     }
-
 
     public partial class Data
     {

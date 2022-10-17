@@ -12,7 +12,7 @@ namespace AirTagTracker
         /// <summary>
         /// Write the supplied FindMyCache to the database
         /// </summary>
-        public static void Upload(Cache cache)
+        public static bool Upload(Cache cache)
         {
             using (var context = new FindMyModelFactory().CreateDbContext())
             {
@@ -36,6 +36,8 @@ namespace AirTagTracker
 
                 context.SaveChanges();
             }
+
+            return true;
         }
     }
 }

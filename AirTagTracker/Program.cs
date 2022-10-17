@@ -3,7 +3,6 @@ using AirTagTracker;
 
 Cache? _cache = null;
 List<Cache> _failedUploads = new List<Cache>();
-string filepath = @"C:\Users\clark\Downloads\Items.data";
 
 /// Can I make this run on startup in MacOS?
 /// Open the Find My App (if Possible)
@@ -14,23 +13,19 @@ while (true)
 {
     try
     {
-
-        // Read the cahce from the directory
         Console.WriteLine("Reading Cache from Dir");
-        // ~/Library/Cache/Apps... on Mac
 
-        using (StreamReader reader = File.OpenText(filepath))
+        using (StreamReader reader = File.OpenText(ConfigurationManager.CacheFilepath))
         {
-            var text = reader.ReadToEnd();
-
-            _cache = new Cache(text, filepath);
+            _cache = new Cache(reader.ReadToEnd(), ConfigurationManager.CacheFilepath);
         }
 
-
         Console.WriteLine("Writing Cache to DB");
-        // Write the latest Cache data to the database
+
         CacheUploader.Upload(_cache);
-        // Will only pass this line when the upload succeeds. 
+        _cache = null;
+
+        // Will only pass this line when the upload succeeds. IE should be connected to internet and able to access DB.
         if (_failedUploads.Count > 0)
         {
             foreach (var item in _failedUploads)
@@ -42,19 +37,15 @@ while (true)
                 _failedUploads.Remove(item);
             }
         }
-        _cache = null;
-
     }
 
     catch (Exception)
     {
-
         if (_cache != null) _failedUploads.Add(_cache);
-
         throw;
     }
 
     // Repeat every 15 minutes 
     Console.WriteLine("Waiting for repeat");
-    Thread.Sleep(15 * 60000);
+    Thread.Sleep(ConfigurationManager.SampleTime);
 }
